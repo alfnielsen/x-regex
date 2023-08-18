@@ -1,6 +1,6 @@
 {
   "name": "x-regex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS RegEx Builder",
   "repository": "https://github.com/alfnielsen/x-regex.git",
   "author": "Alf Nielsen <alfnielsen@gmail.com>",

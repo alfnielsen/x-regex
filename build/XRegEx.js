@@ -25,7 +25,7 @@ class XRegEx {
     static anyChar = "[\\s\\S]"; // nomatter flag 's'
     static whitespaceOnly = "[^\\S\\n]"; // awoide new line
     static whitespaceOrNewLine = "[\\s\\n]"; // nomatter flag 's'
-    static tan = "\\t";
+    static tab = "\\t";
     static verticalTab = "\\v";
     static returnfeed = "\\r";
     static newLine = "\\n";
@@ -104,29 +104,82 @@ class XRegEx {
         this.currentBlock.add(content);
         return this;
     }
+    // Add standard regex
+    addAnyChar() {
+        return this.add(XRegEx.anyChar);
+    }
+    addWhitespaceOnly() {
+        return this.add(XRegEx.whitespaceOnly);
+    }
+    addWhitespaceOrNewLine() {
+        return this.add(XRegEx.whitespaceOrNewLine);
+    }
+    addTab() {
+        return this.add(XRegEx.tab);
+    }
+    addVerticalTab() {
+        return this.add(XRegEx.verticalTab);
+    }
+    addReturnfeed() {
+        return this.add(XRegEx.returnfeed);
+    }
+    addNewLine() {
+        return this.add(XRegEx.newLine);
+    }
+    addNonNewLine() {
+        return this.add(XRegEx.nonNewLine);
+    }
+    addWordChar() {
+        return this.add(XRegEx.wordChar);
+    }
+    addNonWordChar() {
+        return this.add(XRegEx.nonWordChar);
+    }
+    addWordBoundary() {
+        return this.add(XRegEx.wordBoundary);
+    }
+    addNonWordBoundary() {
+        return this.add(XRegEx.nonWordBoundary);
+    }
+    addWord() {
+        return this.add(XRegEx.word);
+    }
+    addStart() {
+        return this.add(XRegEx.start);
+    }
+    addEnd() {
+        return this.add(XRegEx.end);
+    }
+    addDigit() {
+        return this.add(XRegEx.digit);
+    }
+    addNonDigit() {
+        return this.add(XRegEx.nonDigit);
+    }
+    // Add with options
     addEscapedChar(char) {
-        this.add("\\" + char + ")");
+        this.add(XRegEx.escapedChar(char));
     }
     addNonMatchGroup(content) {
-        this.add("(!=" + content + ")");
+        this.add(XRegEx.nonMatchGroup(content));
     }
     addLookAHead(content) {
-        this.add("(?=" + content + ")");
+        this.add(XRegEx.lookAHead(content));
     }
     addNegativLookAHead(content) {
-        this.add("(?!" + content + ")");
+        this.add(XRegEx.negativLookAHead(content));
     }
     addLookBefore(content) {
-        this.add("(?<=" + content + ")");
+        this.add(XRegEx.lookBefore(content));
     }
     addNegativLookBefore(content) {
-        this.add("(?<!" + content + ")");
+        this.add(XRegEx.negativLookBefore(content));
     }
     addNamedGroupBackReference(name) {
-        this.add("\\k<" + name + ">");
+        this.add(XRegEx.namedGroupBackReference(name));
     }
     addRange(chars) {
-        this.add("[" + chars + "]");
+        this.add(XRegEx.range(chars + "]"));
     }
     match(opt) {
         let block = this.blockStack.pop(); // pop current block

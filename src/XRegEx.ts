@@ -38,7 +38,7 @@ export class XRegEx {
   static readonly anyChar = "[\\s\\S]" // nomatter flag 's'
   static readonly whitespaceOnly = "[^\\S\\n]" // awoide new line
   static readonly whitespaceOrNewLine = "[\\s\\n]" // nomatter flag 's'
-  static readonly tan = "\\t"
+  static readonly tab = "\\t"
   static readonly verticalTab = "\\v"
   static readonly returnfeed = "\\r"
   static readonly newLine = "\\n"
@@ -126,29 +126,84 @@ export class XRegEx {
     this.currentBlock.add(content)
     return this
   }
+
+  // Add standard regex
+  addAnyChar() {
+    return this.add(XRegEx.anyChar)
+  }
+  addWhitespaceOnly() {
+    return this.add(XRegEx.whitespaceOnly)
+  }
+  addWhitespaceOrNewLine() {
+    return this.add(XRegEx.whitespaceOrNewLine)
+  }
+  addTab() {
+    return this.add(XRegEx.tab)
+  }
+  addVerticalTab() {
+    return this.add(XRegEx.verticalTab)
+  }
+  addReturnfeed() {
+    return this.add(XRegEx.returnfeed)
+  }
+  addNewLine() {
+    return this.add(XRegEx.newLine)
+  }
+  addNonNewLine() {
+    return this.add(XRegEx.nonNewLine)
+  }
+  addWordChar() {
+    return this.add(XRegEx.wordChar)
+  }
+  addNonWordChar() {
+    return this.add(XRegEx.nonWordChar)
+  }
+  addWordBoundary() {
+    return this.add(XRegEx.wordBoundary)
+  }
+  addNonWordBoundary() {
+    return this.add(XRegEx.nonWordBoundary)
+  }
+  addWord() {
+    return this.add(XRegEx.word)
+  }
+  addStart() {
+    return this.add(XRegEx.start)
+  }
+  addEnd() {
+    return this.add(XRegEx.end)
+  }
+  addDigit() {
+    return this.add(XRegEx.digit)
+  }
+  addNonDigit() {
+    return this.add(XRegEx.nonDigit)
+  }
+
+  // Add with options
   addEscapedChar(char: string) {
-    this.add("\\" + char + ")")
+    this.add(XRegEx.escapedChar(char))
   }
   addNonMatchGroup(content: string) {
-    this.add("(!=" + content + ")")
+    this.add(XRegEx.nonMatchGroup(content))
   }
   addLookAHead(content: string) {
-    this.add("(?=" + content + ")")
+    this.add(XRegEx.lookAHead(content))
   }
   addNegativLookAHead(content: string) {
-    this.add("(?!" + content + ")")
+    this.add(XRegEx.negativLookAHead(content))
   }
   addLookBefore(content: string) {
-    this.add("(?<=" + content + ")")
+    this.add(XRegEx.lookBefore(content))
   }
   addNegativLookBefore(content: string) {
-    this.add("(?<!" + content + ")")
+    this.add(XRegEx.negativLookBefore(content))
   }
   addNamedGroupBackReference(name: string) {
-    this.add("\\k<" + name + ">")
+    this.add(XRegEx.namedGroupBackReference(name))
   }
   addRange(chars: string) {
-    this.add("[" + chars + "]")
+    this.add(XRegEx.range(chars + "]"))
   }
 
   match(opt?: CaptureBlockOptions) {
